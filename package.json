@@ -4,5 +4,8 @@
     "@types/node": "^22.13.10",
     "typescript": "^5.8.2"
   },
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "file-system": "^2.2.2"
+  }
 }
