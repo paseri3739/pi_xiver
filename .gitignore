@@ -9,3 +9,5 @@ node_modules/
 
 # ds_store files
 .DS_Store
+
+.env
