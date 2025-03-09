@@ -5,9 +5,9 @@
             "name": "Launch Webpack Built File",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceFolder}/dist/bundle.js",
-            "sourceMaps": true,
-            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+            "program": "${workspaceFolder}/dist/bundle.js", // エントリーポイント
+            "sourceMaps": true, // ソースマップを有効にする
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"], // ソースマップのパス
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal"
         },
