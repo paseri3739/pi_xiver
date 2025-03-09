@@ -7,8 +7,9 @@ module.exports = {
     target: "node", // Node.js 用
     externals: [nodeExternals()], // node_modules のライブラリをバンドル対象から除外
     output: {
-        filename: "server.bundle.js",
+        filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
+        devtoolModuleFilenameTemplate: "[absolute-resource-path]", // ソースマップの解決を正しくする
     },
     module: {
         rules: [

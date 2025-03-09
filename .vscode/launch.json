@@ -2,23 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Webpack Built File",
             "type": "node",
             "request": "launch",
-            "name": "Run TypeScript",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "program": "${workspaceFolder}/dist/main.js",
-            "outFiles": ["${workspaceFolder}/dist/src/**/*.js", "${workspaceFolder}/dist/src/**/*.js.map"],
+            "program": "${workspaceFolder}/dist/bundle.js",
             "sourceMaps": true,
-            "resolveSourceMapLocations": ["${workspaceFolder}/src/**/*.ts"]
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
         },
         {
+            "name": "Attach to Webpack Dev",
             "type": "node",
-            "request": "launch",
-            "name": "Debug TypeScript",
-            "runtimeArgs": ["-r", "ts-node/register"],
-            "args": ["${workspaceFolder}/src/main.ts"],
-            "cwd": "${workspaceFolder}",
-            "sourceMaps": true
+            "request": "attach",
+            "port": 9229,
+            "restart": true,
+            "sourceMaps": true,
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
