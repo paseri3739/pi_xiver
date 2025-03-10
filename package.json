@@ -11,6 +11,8 @@
     "scripts": {},
     "dependencies": {
         "@types/node": "^22.13.10",
-        "dotenv": "^16.4.7"
+        "dotenv": "^16.4.7",
+        "playwright-extra": "^4.3.6",
+        "playwright-stealth": "^0.0.1"
     }
 }
