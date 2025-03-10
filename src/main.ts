@@ -34,17 +34,29 @@ const CHROME_USER_AGENT =
         const cookies = JSON.parse(fs.readFileSync(COOKIE_FILE, "utf-8"));
         await context.addCookies(cookies);
 
-        await page.goto(
-            "https://accounts.pixiv.net/login?return_to=https%3A%2F%2Fwww.pixiv.net%2F&lang=ja&source=pc&view_type=page",
-            { waitUntil: "networkidle" }
-        );
+        await page.goto("https://pixiv.net", { waitUntil: "networkidle" });
 
         console.log("ログイン済みのcookieを使用しました。");
 
         const loginCheck = await page.$(`input[placeholder="メールアドレスまたはpixiv ID"]`);
         if (!loginCheck) {
             console.log("ログイン済みと判定");
-            await browser.close();
+
+            const userId = 1234567;
+            await page.goto(`https://www.pixiv.net/users/${userId}`, { waitUntil: "networkidle" });
+
+            // Navigate to /users/userId/artworks?p=1
+            // Increment p and repeat the following process until the maximum page is reached and the URL is redirected
+            // Search for i.pximg.net/**/*_p0_square1200.jpg, extract the ID before _p0, and store it in a list → This retrieves the list of artwork IDs posted by the user
+
+            // The following process is performed after constructing the list
+            // Navigate to pixiv.net/artworks/ID
+            // i.pximg.net/img-master/img/date.../ID_p[number]_master1200.jpg exists
+            // Changing "img-master" to "img-original" allows you to obtain the original image
+            // Increment the number to retrieve images
+            // The increment limit is determined by the two numbers inside the div with area-label="Preview"
+            // For example, if it contains <span>1/2</span>, increment up to 2; if it contains <span>1/3</span>, increment up to 3, and so on
+
             return;
         }
         console.log("セッションが切れていたため再ログインします。");
